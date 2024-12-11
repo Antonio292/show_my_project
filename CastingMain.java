@@ -17,6 +17,6 @@ public class CastingMain {
         Casting casting = new Casting("bla", "a123", "bla", "Casting1", participants);
         casting.registerParticipant(name,id,status);
         casting.registerParticipant(name1, id1, status1);
-        casting.showParticipants(participants);
+        casting.showParticipants();
     }
 }

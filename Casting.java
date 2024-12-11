@@ -40,7 +40,7 @@ public class Casting {
 
     }
 
-    public void showParticipants(List<Participant> participants) {
+    public void showParticipants() {
         for (Participant participant: participants) {
             System.out.println(participant);
         }
