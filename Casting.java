@@ -2,6 +2,7 @@ package SelfStudy.TeamProject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,25 +13,24 @@ public class Casting {
     private String location;
     private List<Participant> participants = new ArrayList<>();
 
-    public Casting(String description, String id, String location, String name, List<Participant> participants) {
-        this.description = description;
+    public Casting(String id, String name, String description, String location) {
         this.id = id;
-        this.location = location;
         this.name = name;
-        this.participants.addAll(participants);
+        this.description = description;
+        this.location = location;
     }
 
-    public void registerParticipant(String name, String id, String status) {
-        if ((name.isEmpty()) || (name == null)) {
-            System.out.println("You enter incorrect Name!");
-        }
-        else if ((id.isEmpty()) || (id == null)) {
+    public void registerParticipant(String id, String name, String status) {
+        if ((id == null) || (id.isEmpty())) {
             System.out.println("You enter incorrect Id!");
-        }
-        else if ((status.isEmpty()) || (status == null)) {
+                   throw new IllegalArgumentException("You enter incorrect Id!");
+        } else if ((name == null) || (name.isEmpty())) {
+            System.out.println("You enter incorrect Name!");
+                    throw new IllegalArgumentException("You enter incorrect Name!");
+        } else if ((status == null) || (status.isEmpty())) {
             System.out.println("You enter incorrect Status!");
-        }
-        else {
+                    throw new IllegalArgumentException("You enter incorrect Status!");
+        } else {
             Participant participant = new Participant(id, name, status);
             participants.add(participant);
         }
@@ -41,10 +41,12 @@ public class Casting {
     }
 
     public void showParticipants() {
-        for (Participant participant: participants) {
+        for (Participant participant : participants) {
             System.out.println(participant);
         }
     }
 
-
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(this.participants);
+    }
 }
