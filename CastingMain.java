@@ -3,20 +3,16 @@ package SelfStudy.TeamProject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CastingMain {
+    private static Participant participant = new Participant();
     public static void main(String[] args) {
-        String id = "a123";
-        String name = "Metallica";
-        String status = "new";
-        String id1 ="";
-        String name1 = "OffSpring";
-        String status1 = "new";
-        List<Participant>participants = new ArrayList<>();
 
         Casting casting = new Casting("a123", "Casting", "bla", "bla");
-        casting.registerParticipant(name,id,status);
-        casting.registerParticipant(name1, id1, status1);
+        buildParticipant();
+        casting.registerParticipant(participant);
+        casting.registerParticipant(participant);
         showParticipants(casting);
     }
 
@@ -24,5 +20,22 @@ public class CastingMain {
         for (Participant participant: casting.getParticipants()) {
             System.out.println(participant);
         }
+    }
+
+    private static Participant buildParticipant() {
+        Scanner scanner = new Scanner(System.in);
+        Participant participant = new Participant();
+        System.out.println("Enter Participant Id: ");
+        String id = scanner.nextLine();
+        participant.setId(id);
+
+        System.out.println("Enter Participant Name: ");
+        String name = scanner.nextLine();
+        participant.setName(name);
+
+        System.out.println("Enter Participant Status: ");
+        String status = scanner.nextLine();
+        participant.setStatus(status);
+        return participant;
     }
 }

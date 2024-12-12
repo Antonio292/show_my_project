@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Casting {
+    private Participant participant = new Participant();
     private String id;
     private String name;
     private String description;
     private String location;
     private List<Participant> participants = new ArrayList<>();
-
+    CastingMain castingMain = new CastingMain();
     public Casting(String id, String name, String description, String location) {
         this.id = id;
         this.name = name;
@@ -20,30 +21,23 @@ public class Casting {
         this.location = location;
     }
 
-    public void registerParticipant(String id, String name, String status) {
-        if ((id == null) || (id.isEmpty())) {
+    public void registerParticipant(Participant participant) {
+        if ((participant.getId() == null) || (participant.getId().isEmpty())) {
             System.out.println("You enter incorrect Id!");
-                   throw new IllegalArgumentException("You enter incorrect Id!");
-        } else if ((name == null) || (name.isEmpty())) {
+//            throw new IllegalArgumentException("You enter incorrect Id!");
+        } else if ((participant.getName() == null) || (participant.getName().isEmpty())) {
             System.out.println("You enter incorrect Name!");
-                    throw new IllegalArgumentException("You enter incorrect Name!");
-        } else if ((status == null) || (status.isEmpty())) {
+//            throw new IllegalArgumentException("You enter incorrect Name!");
+        } else if ((participant.getStatus() == null) || (participant.getStatus().isEmpty())) {
             System.out.println("You enter incorrect Status!");
-                    throw new IllegalArgumentException("You enter incorrect Status!");
+//            throw new IllegalArgumentException("You enter incorrect Status!");
         } else {
-            Participant participant = new Participant(id, name, status);
             participants.add(participant);
         }
     }
 
     public void updateStatus(String participantName, String newStatus) {
 
-    }
-
-    public void showParticipants() {
-        for (Participant participant : participants) {
-            System.out.println(participant);
-        }
     }
 
     public List<Participant> getParticipants() {
