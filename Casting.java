@@ -1,6 +1,7 @@
 package SelfStudy.TeamProject;
 
 
+import lombok.ToString;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 @Slf4j
+@ToString
 public class Casting {
     private static final Logger log = LoggerFactory.getLogger(Casting.class);
     private String id;
@@ -20,12 +22,35 @@ public class Casting {
     private String location;
     private List<Participant> participants = new ArrayList<>();
 
+    public String getId() {
+        return id;
+    }
 
-
-    public Casting(String id, String name, String description, String location) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
         this.location = location;
     }
 
