@@ -10,7 +10,7 @@ public class CastingMain {
     static String newStatus = "";
     public static void main(String[] args) {
 
-        Casting casting = new Casting("a123", "Casting", "bla", "bla");
+        Casting casting = new Casting();
         Participant participant = buildParticipant();
         casting.registerParticipant(participant);
         participant = buildParticipant();

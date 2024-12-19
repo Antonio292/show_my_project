@@ -1,5 +1,10 @@
 package SelfStudy.TeamProject;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
 public class Participant {
     private String id;
     private String name;
@@ -30,12 +35,5 @@ public class Participant {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Participant{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
+
 }
