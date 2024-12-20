@@ -3,9 +3,16 @@ package SelfStudy.TeamProject;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 @ToString
+@Slf4j
 public class Participant {
+    private static final Logger log = LoggerFactory.getLogger(Participant.class);
     private String id;
     private String name;
     private String status;
@@ -16,7 +23,14 @@ public class Participant {
     }
 
     public void setId(String id) {
-        this.id = id;
+        if ((id == null) || (id.isEmpty())) {
+            System.out.println("You enter incorrect  Participant Id!");
+//            throw new IllegalArgumentException("You enter incorrect Id!");
+            log.warn("attempt to enter incorrect Participant id");
+        } else {
+            this.id = id;
+            log.info("Participant id was added");
+        }
     }
 
     public String getName() {
@@ -24,7 +38,14 @@ public class Participant {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if ((name == null) || (name.isEmpty())) {
+            System.out.println("You enter incorrect Participant Name!");
+//            throw new IllegalArgumentException("You enter incorrect Name!");
+            log.warn("attempt to enter incorrect Participant Name");
+        } else {
+            this.name = name;
+            log.info("Participant name was added");
+        }
     }
 
     public String getStatus() {
@@ -32,7 +53,14 @@ public class Participant {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if ((status == null) || (status.isEmpty())) {
+            System.out.println("You enter incorrect Participant Status!");
+//            throw new IllegalArgumentException("You enter incorrect Status!");
+            log.warn("attempt to enter incorrect Participant Status");
+        } else {
+            this.status = status;
+            log.info("Participant status was added");
+        }
     }
 
 

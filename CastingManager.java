@@ -1,24 +1,58 @@
 package SelfStudy.TeamProject;
 
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+@Slf4j
+@ToString
 public class CastingManager {
+    private static final Logger log = LoggerFactory.getLogger(CastingManager.class);
     static String id = "";
     static String newStatus = "";
     static Scanner scanner = new Scanner(System.in);
     static Map<String, Casting> castings = new HashMap<>();
 
     public static void main(String[] args) {
+        int choice = 0;
+        boolean run = true;
+        while (run) {
+            showMenu();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> {
+                    registerCasting(buildCasting());
+                }
+                case 2 -> {
+                    findCasting();
+                }
+                case 3 -> {
+                    showCastings();
+                }
+                case 4 -> {
+                    run = false;
+                    log.info("Quit the program");
+                }
 
+            }
+
+        }
     }
 
     public static void showMenu() {
-
+        System.out.println("Menu: ");
+        System.out.println("1. New Casting");
+        System.out.println("2. Select Casting");
+        System.out.println("3. View Castings");
+        System.out.println("4. Quit \n");
     }
 
     public static Casting buildCasting() {
+        scanner.nextLine();
         Casting casting = new Casting();
 
         System.out.println("Enter Casting Id: ");
@@ -41,39 +75,23 @@ public class CastingManager {
     }
 
     public static void registerCasting(Casting casting) {
-        if (casting.getId() == null || casting.getId().isEmpty()) {
-            System.out.println("Id is empty, I can't add Casting with empty Id!");
-        }
-        else if (casting.getName()==null || casting.getName().isEmpty()) {
-            System.out.println("Name is empty, I can't add Casting with empty Name!");
-        }
-        else if (casting.getDescription()==null || casting.getDescription().isEmpty()) {
-            System.out.println("Description is empty, I can't add Casting with empty Description!");
-        }
-        else if (casting.getLocation()==null || casting.getLocation().isEmpty()) {
-            System.out.println("Location is empty, I can't add Casting with empty Location!");
-        }
-        else {
-            castings.put(casting.getId(),casting);
-        }
+        castings.put(casting.getId(),casting);
+        System.out.println("Casting was added");
+        log.info("Casting was added");
     }
 
     public static void findCasting() {
+        scanner.nextLine();
         System.out.println("Enter casting Id: ");
         String idToFind = scanner.nextLine();
         if (castings.containsKey(idToFind)){
             System.out.println(castings.get(idToFind));
         }
-    }
-
-    private static void showParticipants(Casting casting) {
-        for (Participant participant: casting.getParticipants()) {
-            System.out.println(participant);
-        }
+        log.info("attempt find Casting");
     }
 
     private static Participant buildParticipant() {
-        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
         Participant participant = new Participant();
         System.out.println("Enter Participant Id: ");
         String id = scanner.nextLine();
@@ -90,12 +108,18 @@ public class CastingManager {
     }
 
     private static void gettingNewStatus() {
-        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Enter Participant Id: ");
         id = scanner.nextLine();
         System.out.println("Enter new status for this Participant: ");
         newStatus = scanner.nextLine();
 
+    }
+
+    private static void showCastings() {
+        for (Map.Entry<String, Casting> entry : castings.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
     }
 
 }
